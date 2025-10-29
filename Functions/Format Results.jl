@@ -39,7 +39,7 @@ function format_results(solution::Dict, pm)
     phase_map = Dict(1 => "a", 2 => "b", 3 => "c")
 
 # Extract bus results for the chosen buses
-# vcat(VUF_set_str2, los_55_chosen_str)
+# vcat(VUF_set_str2, print_55_chosen_str)
 #for bus_id in VUF_set_str2
 for bus_id in Just_plot
     bus_id2= string(reverse_bus_map_zero[bus_id])

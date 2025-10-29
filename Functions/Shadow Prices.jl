@@ -48,7 +48,7 @@ function print_shadow_prices(pm)
     marker_map = Dict(1 => :circle, 2 => :square, 3 => :diamond)
     
     # Create data structures to store shadow prices for plotting
-    bus_numbers = los_55_chosen_str[1:55]
+    bus_numbers = print_55_chosen_str[1:55]
     
     # Initialize data structures for plotting
     active_shadow_prices = Dict(phase => Float64[] for phase in 1:3)

@@ -1,25 +1,48 @@
 # main.jl
 # ─────────────────────────────────────────────────────────────────────────────
 # Entry point for running OPF simulations
-# Includes: Default OPF, VUF+Gen costs, Zlin+Gen costs
+# Includes: Default OPF, VUF+Gen costs
 # ─────────────────────────────────────────────────────────────────────────────
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Mode selection helper
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Choose one of the following modes manually:
+# 1 → Default OPF (no VUF constraint or penalty)
+# 2 → OPF with voltage unbalance as constraint
+# 3 → OPF with voltage unbalance penalization
+
+selected_mode = 2  # ← change this to 2 or 3 as needed
+
+if selected_mode == 1
+    global VUF_STATUS = false
+    global DEFAULT_OPF_personal = true
+elseif selected_mode == 2
+    global VUF_STATUS = true
+    global DEFAULT_OPF_personal = true
+    global VUF_set_selector = 2
+elseif selected_mode == 3
+    global VUF_STATUS = false
+    global DEFAULT_OPF_personal = false
+    global VUF_set_selector = 3
+else
+    error("Invalid mode selected. Choose 1, 2, or 3.")
+end
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Other global flags
+# ─────────────────────────────────────────────────────────────────────────────
+global PLOT_DISPLAY = true            # Show plots during execution
+global SAVING_FIGURES_STATUS = false  # Save figures to disk
+global PRINT_PERMISSION_personal = false # Verbose solver output
 
 # Load core algorithm files
 include("Default Gen cost.jl")
 include("VUF+Gen costs.jl")
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Global flags and settings
-# ─────────────────────────────────────────────────────────────────────────────
-
-global VUF_STATUS = false              # Enable/Disable VUF constraints
-global PLOT_DISPLAY = true            # Show plots during execution
-global SAVING_FIGURES_STATUS = false  # Save figures to disk
-global DEFAULT_OPF_personal = true    # true = run default OPF; false = run VUF+Gen and Zlin+Gen
-global PRINT_PERMISSION_personal = false # Verbose solver output
-
 # Case selection
-Case_Num = [20]  # 20 = 55-bus system + motors + DERs
+Case_Num = [1]  # List of case numbers to run
 file_path = "LVTestCase/Master.dss"
 
 # OPF configuration struct

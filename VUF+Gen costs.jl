@@ -28,23 +28,6 @@ include("Functions/Thermal Limit.jl");
 include("Functions/Voltage Magnitude.jl");
 include("Functions/VUF Constriant.jl");
 
-#=
-config = OPFConfig(
-    1.0,    # sbase_default
-    1000.0, # power_scale_factor
-    1.10,   # v_upper_bound
-    0.94,   # v_lower_bound
-    20.0,    # thermal
-    2.0,    # VUF_level
-    1       # print_level
-)
-
-combined_extension = "_case6"
-separate_extension = combined_extension;
-
-# Example usage:
-file_path = "Test2.dss"
-=#
 function VUF_Gen_costs(file_path::String, M::Float64, N::Float64)
 
 solution, pm, results_df = test_opf_with_vuf(file_path, M, N); #Second number is for Gen cost

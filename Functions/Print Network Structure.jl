@@ -18,20 +18,6 @@ function print_network_structure(solution::Dict, pm)
     println("\n=================================================================================")
     println("Complete report:")
 
-    #= Print bus information with translated names
-    println("Buses:")
-    for (bus_id, bus) in solution["solution"]["bus"]
-        # Find original bus ID
-        original_id = "Substation"  # Default to "Substation" instead of "Unknown"
-        for (orig_id, assigned_num) in pm.data["bus_lookup"]
-            if string(assigned_num) == bus_id
-                original_id = orig_id
-                break
-            end
-        end
-        println("Bus $original_id")
-    end
-    =#
     # Create a reverse lookup to get original bus IDs from assigned numbers
     reverse_bus_lookup = Dict{Int, String}()
     for (original_id, assigned_num) in pm.data["bus_lookup"]
@@ -135,13 +121,6 @@ for bus in sorted_buses
 end
 
 combined_filename_report = joinpath(output_dir, "report$(combined_ext).txt")
-# --- Print total generation cost in blue and additional cost info ---
-# --- Prepare messages for costs ---
-line1 = "\nTotal Generation Cost: \$$(round(total_cost, digits=3))\n"
-line2 = "The additional cost rather than hard constraint is: $(round(total_cost - OPF_result_with_hard, digits=3))\n"
-line3 = "The additional cost rather than hard constraint is: $(round(( (total_cost - OPF_result_with_hard) / OPF_result_with_hard * 100 ), digits=2))%\n"
-line4 = "The additional cost rather than no constraint is: $(round(total_cost - OPF_result_without_hard, digits=3))\n"
-line5 = "The additional cost rather than no constraint is: $(round(( (total_cost - OPF_result_without_hard) / OPF_result_without_hard * 100 ), digits=2))%\n"
 
 # --- Calculate total load and losses ---
 total_pl = sum(sum(load["pd"]) for (load_id, load) in pm.data["load"])
@@ -154,22 +133,6 @@ line8 = "Total Losses (Pg - Pl): $(round(losses, digits=3)) kW\n"
 
 # --- Write to file and print with styling ---
 open(combined_filename_report, "w") do file
-    # Print and save cost information
-    printstyled(line1, color=:blue)
-    print(file, line1)
-
-    printstyled(line2, color=:red)
-    print(file, line2)
-
-    printstyled(line3, color=:red)
-    print(file, line3)
-
-    printstyled(line4, color=:yellow)
-    print(file, line4)
-
-    printstyled(line5, color=:yellow)
-    print(file, line5)
-
     # Print and save power information
     printstyled(line6, color=:green)
     print(file, line6)
@@ -590,134 +553,4 @@ end
         println("Loads consumption plot saved to: $combined_filename_qL")
     end
 
-
-    #= Plotting
-    # Create output directory if it doesn't exist
-        if VUF_STATUS
-            output_dir = "C:\\Users\\Alireza\\.julia\\Distribution-Locational-Mariginal-Price-55LV-simplified\\Outputs\\With VUF Constraint"
-        else
-            output_dir = "C:\\Users\\Alireza\\.julia\\Distribution-Locational-Mariginal-Price-55LV-simplified\\Outputs\\Without VUF Constraint"
-        end
-        mkpath(output_dir)
-
-        combined_ext = @isdefined(combined_extension) ? combined_extension : ""
-        separate_ext = @isdefined(separate_extension) ? separate_extension : ""
-
-    # Plot generator data
-    bus_ids = ["Substation"]
-    append!(bus_ids, string.(sort(collect(keys(reverse_bus_lookup)))))
-
-    # Prepare data for plotting
-    phase_labels = ["a", "b", "c"]
-    phase_offsets = [-0.2, 0.0, 0.2]  # Offsets for phases a, b, c
-
-    # Define consistent colors for S, P, Q
-    colors = Dict("S" => :blue, "P" => :yellow, "Q" => :red)
-
-    # Generator data
-    pg_values = Dict{String, Vector{Float64}}()
-    qg_values = Dict{String, Vector{Float64}}()
-    s_values = Dict{String, Vector{Float64}}()
-
-    for phase in phase_labels
-        pg_values[phase] = []
-        qg_values[phase] = []
-        s_values[phase] = []
-    end
-
-    for bus_id in bus_ids
-        if haskey(gen_data, bus_id)
-            for (i, phase) in enumerate(phase_labels)
-                push!(pg_values[phase], sum(gen_data[bus_id]["pg"][i:3:end]))
-                push!(qg_values[phase], sum(gen_data[bus_id]["qg"][i:3:end]))
-                push!(s_values[phase], sum(gen_data[bus_id]["s"][i:3:end]))
-            end
-        else
-            for phase in phase_labels
-                push!(pg_values[phase], 0.0)
-                push!(qg_values[phase], 0.0)
-                push!(s_values[phase], 0.0)
-            end
-        end
-    end
-
-    # Plot generator data
-    p = plot(size = (600, 400), dpi = 300)
-    x_positions = 1:length(bus_ids)  # Numerical x-axis positions
-    for (i, phase) in enumerate(phase_labels)
-        # Plot S, P, Q with consistent colors
-        bar!(p, x_positions .+ phase_offsets[i], s_values[phase], 
-             label=(i == 1 ? "S" : ""), color=colors["S"], bar_width=0.2, alpha=1.0)
-        bar!(p, x_positions .+ phase_offsets[i], pg_values[phase], 
-             label=(i == 1 ? "P" : ""), color=colors["P"], bar_width=0.2, alpha=1.0)
-        bar!(p, x_positions .+ phase_offsets[i], qg_values[phase], 
-             label=(i == 1 ? "Q" : ""), color=colors["Q"], bar_width=0.2, alpha=1.0)
-    end
-    xticks!(x_positions, bus_ids)  # Set x-tick labels to bus IDs
-    xlabel!("Bus")
-    ylabel!("Power (kVA)")
-    title!("Generator Output by Bus and Phase")
-
-    # Load data
-    pd_values = Dict{String, Vector{Float64}}()
-    qd_values = Dict{String, Vector{Float64}}()
-    s_values = Dict{String, Vector{Float64}}()
-
-    for phase in phase_labels
-        pd_values[phase] = []
-        qd_values[phase] = []
-        s_values[phase] = []
-    end
-
-    for bus_id in bus_ids
-        if haskey(load_data, bus_id)
-            for (i, phase) in enumerate(phase_labels)
-                push!(pd_values[phase], sum(load_data[bus_id]["pd"][i:3:end]))
-                push!(qd_values[phase], sum(load_data[bus_id]["qd"][i:3:end]))
-                push!(s_values[phase], sum(load_data[bus_id]["s"][i:3:end]))
-            end
-        else
-            for phase in phase_labels
-                push!(pd_values[phase], 0.0)
-                push!(qd_values[phase], 0.0)
-                push!(s_values[phase], 0.0)
-            end
-        end
-    end
-
-    # Plot load data
-    pl = plot(size = (2000, 800), dpi = 300)  # Increased width and height
-    x_positions = 1:length(bus_ids)
-    phase_offsets = [-0.25, 0.0, 0.25]  # Adjusted offsets for better spacing
-    bar_width = 0.15  # Narrower bars to fit more buses
-
-    for (i, phase) in enumerate(phase_labels)
-        # Plot S, P, Q with consistent colors
-        bar!(pl, x_positions .+ phase_offsets[i], s_values[phase], 
-            label=(i == 1 ? "S" : ""), color=colors["S"], bar_width=bar_width, alpha=1.0)
-        bar!(pl, x_positions .+ phase_offsets[i], pd_values[phase], 
-            label=(i == 1 ? "P" : ""), color=colors["P"], bar_width=bar_width, alpha=1.0)
-        bar!(pl, x_positions .+ phase_offsets[i], qd_values[phase], 
-            label=(i == 1 ? "Q" : ""), color=colors["Q"], bar_width=bar_width, alpha=1.0)
-    end
-
-    # Rotate x-ticks and set labels
-    plot!(pl, xticks=(x_positions, bus_ids), xrotation=45, xlabel="Bus", ylabel="Power (kVA)")
-    title!("Load Consumption by Bus and Phase")
-
-    if SAVING_FIGURES_STATUS
-        combined_filename_G = joinpath(output_dir, "Generators_output$(combined_ext).png")
-        savefig(p, combined_filename_G)
-        println("Generators output plot saved to: $combined_filename_G")
-        combined_filename_L = joinpath(output_dir, "Loads_consumption$(combined_ext).png")
-        savefig(pl, combined_filename_L)
-        println("Loads consumption plot saved to: $combined_filename_L")
-    end
-
-    # Display plots
-    if PLOT_DISPLAY
-        display(p)
-        display(pl)
-    end
-    =#
 end

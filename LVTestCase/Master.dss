@@ -6,8 +6,6 @@ Redirect LineCode.txt
 Redirect LoadShapes.txt
 Redirect Lines.txt
 Redirect Transformers.txt
-! Redirect C:\Users\Alireza\.julia\Distribution-Locational-Mariginal-Price-55LV-simplified\New loads dataset\Load112.txt
-! Redirect Loads.txt
 Redirect Loads3M.txt
 Redirect PV.txt
 Redirect Monitors.txt
