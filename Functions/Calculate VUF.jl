@@ -17,6 +17,6 @@ function calculate_vuf(vm::Vector{Float64}, va::Vector{Float64})
     
     # Calculate VUF
     vuf = abs(V2) / abs(V1) * 100
-    Zlin = ((abs(vm[1]-vm[2]) + abs(vm[2]-vm[3]) + abs(vm[3]-vm[1])) / (3.46 * (vm[1] + vm[2] + vm[3]))) * 100
-    return vuf, Zlin
+    
+    return vuf
 end

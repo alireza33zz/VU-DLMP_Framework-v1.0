@@ -16,9 +16,7 @@ function format_results(solution::Dict, pm)
         phase = String[],  # Change to String[]
         vm_pu = Float64[],
         va_deg = Float64[],
-        vuf_percent = Float64[],
-        Zlin_percent = Float64[],
-        error = Float64[]
+        vuf_percent = Float64[]
     )
     function generate_bus_map(pm)
 
@@ -51,7 +49,7 @@ for bus_id in Just_plot
         va = bus["va"] * (180/π)  # Convert to degrees for readability
 
 # Calculate vuf and Zlin
-vuf, Zlin = calculate_vuf(bus["vm"], bus["va"])
+vuf = calculate_vuf(bus["vm"], bus["va"])
 
         # Add rows to DataFrame
         for phase in 1:3
@@ -60,9 +58,7 @@ vuf, Zlin = calculate_vuf(bus["vm"], bus["va"])
                 phase_map[phase],  # Use the phase mapping
                 round(vm[phase], digits=3),
                 round(va[phase], digits=1),
-                round(vuf, digits=3),
-                round(Zlin, digits=3),
-                round(Zlin - vuf, digits=3)  # Calculate error    
+                round(vuf, digits=3) 
             ))
         end
     end

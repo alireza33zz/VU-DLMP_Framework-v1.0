@@ -146,6 +146,7 @@ reactive_shadow_prices_adjusted = [reactive_shadow_prices[phase][sorted_indices]
 
     custom_xticks = ([1, 12, 17, 32, 55].-0.5, ["1", "12", "17", "32", "55"])
     X_degree = 0 # Degree of rotation for x-axis labels
+    
     # VERSION 1: Create a single plot for all data with improved margins
     shadow_price_plot = plot(
         title = "Shadow Prices (€/kVA)",
@@ -289,65 +290,19 @@ end
     separate_plot = plot(active_plot, reactive_plot, 
                         layout = (2, 1),
                         size = (1000, 1000),  # Increased vertical size for better spacing
-                        link = :x)            # Link x-axes between subplots
-
-    
-    active_plot2 = plot(
-        #title = "Active Power",
-        xlabel = "Load Number",
-        ylabel = "Shadow Price (Euro/kW)",
-        framestyle = :box,
-        legend = :outertop,
-        legend_columns = 3,
-        grid = :true,
-        minorgrid = :true,
-        gridcolor = :black,
-        gridalpha = 0.5,
-        size = (1000, 500),
-        dpi = 300,
-        margin = 10mm,
-        top_margin = 2mm,
-        #bottom_margin = 10mm,  # Increased to accommodate legend + xlabel
-        #left_margin = 10mm,
-        xticks=custom_xticks,
-        xrotation=X_degree,  # Rotate x-axis labels for better readability
-        xtickfontsize = 16, ytickfontsize = 16,
-        fontfamily = "Courier", 
-        titlefontsize = 20,
-        xguidefontsize = 18,
-        yguidefontsize = 18,
-        legendfontsize = 14
-    )
-    # Plot each phase for active power
-    for phase in 1:3
-        phase_name = phase_map[phase]
-        plot!(active_plot2, buses_adjusted, active_shadow_prices_adjusted[phase], 
-            label = "Phase $phase_name", 
-            marker = marker_map[phase], 
-            linestyle = :solid, 
-            linewidth = 2,
-            yticks=:auto,              # You can also provide specific values like yticks=0:0.1:1
-            yformatter=y->@sprintf("%.2f", y), # Format to 2 decimal places
-            color = color_map[phase])
-    end
+                        link = :x)            # Link x-axes between subplots  
 
     if SAVING_FIGURES_STATUS
     # Save separate plots with dynamic filename
     separate_filename = joinpath(output_dir, "separate_shadow_prices$(separate_ext).svg")
     savefig(separate_plot, separate_filename)
     println("Separate plots saved to: $separate_filename")
-
-    separate_filename_2 = joinpath(output_dir, "active_shadow_prices$(separate_ext).pdf")
-    savefig(active_plot2, separate_filename_2)
-    println("active plots saved to: $separate_filename")
     end
 
     
     # Display both plots
     if PLOT_DISPLAY
-    display(shadow_price_plot)
     display(separate_plot)
-    display(active_plot2)
     end
     
     return (combined = shadow_price_plot, separate = separate_plot)
