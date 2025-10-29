@@ -91,7 +91,7 @@ If you use this repository in your research or publication, please cite:
 Special thanks to:
 
 - **Andrey Churkin** for publishing [3FlexAnalyser.jl](https://github.com/AndreyChurkin/3FlexAnaly) 
-- and **Dowson** for his helpful and fast responses on Julia Discourse.
+- and **Oscar Dowson** for his helpful and fast responses on Julia Discourse.
 
 ---
 
