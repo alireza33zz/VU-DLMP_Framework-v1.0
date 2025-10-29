@@ -83,6 +83,15 @@ If you use this repository in your research or publication, please cite:
 > **Zabihi, A.**, *Voltage Unbalance Optimization in Low-Voltage Distribution Networks*, [Journal/Conference Name], Year.  
 > DOI: `10.xxxx/xxxxx` *(replace with actual DOI)*
 
+
+---
+
+## 🙏 Acknowledgements
+
+Special thanks to:
+
+- **Andrey Churkin** for publishing [3FlexAnalyser.jl](https://github.com/AndreyChurkin/3FlexAnaly Dowson** for his helpful and fast responses on Julia Discourse.
+
 ---
 
 ## 📄 License
@@ -91,8 +100,7 @@ This project is released under the MIT License. See LICENSE for details.
 
 ---
 
-## 🙋‍♂️ Author
+## 👤 Author
 
 Developed by **Alireza Zabihi**  
 Feel free to reach out or contribute via GitHub issues or pull requests.
-``
