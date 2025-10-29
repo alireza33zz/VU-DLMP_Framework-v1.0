@@ -40,11 +40,6 @@ julia main.jl
 | `2`  | **Voltage Unbalance as Constraint** – adds VUF constraints |
 | `3`  | **Voltage Unbalance Penalization** – adds VUF penalty terms |
 
-The script automatically sets the appropriate global flags:
-- `VUF_STATUS`
-- `DEFAULT_OPF_personal`
-- `VUF_set_selector`
-
 ---
 
 ## 🔧 Customization
@@ -53,8 +48,8 @@ You can modify the following parameters in `main.jl`:
 
 - `Case_Num` – list of case numbers to run
 - `file_path` – path to the OpenDSS master file
-- `M_values_set`, `N_values_set` – weight sets for VUF penalization
-- `single` – set to `0` to run all (M,N) pairs, or choose a specific index
+- `N_values_set` – weight sets for VUF penalization
+- `single` – set to `0` to run all N values, or choose a specific index
 
 You can also control plotting and output:
 
@@ -69,9 +64,8 @@ global PRINT_PERMISSION_personal = true # Verbose solver output
 ## 📁 File Overview
 
 - `main.jl` – main simulation runner  
-- `Default Gen cost.jl` – default OPF implementation  
+- `Default Gen cost.jl` – default and constrained OPF implementation  
 - `VUF+Gen costs.jl` – OPF with VUF penalization  
-- `Bus_map.jl` – bus mapping and zone definitions  
 - `LVTestCase/` – folder containing OpenDSS test case files  
 
 ---
@@ -92,12 +86,6 @@ Special thanks to:
 
 - **Andrey Churkin** for publishing [3FlexAnalyser.jl](https://github.com/AndreyChurkin/3FlexAnalyser.jl.git) 
 - and **Oscar Dowson** for his helpful and fast responses on Julia Discourse.
-
----
-
-## 📄 License
-
-This project is released under the MIT License. See LICENSE for details.
 
 ---
 
