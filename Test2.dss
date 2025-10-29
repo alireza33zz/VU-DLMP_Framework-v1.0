@@ -1,0 +1,33 @@
+
+New Circuit.SimpleNetwork 
+~ basekV=0.416 pu=1.04 angle=0.0 ISC3=3000 ISC1=1000 phases=3 frequency=50.0 baseMVA=100
+~ bus1=1.1.2.3 
+
+Set voltagebases=[0.4]
+Set tolerance=0.000001
+Set defaultbasefreq=50
+
+New LineCode.4c_70 nphases=3 R1=0.446 X1=0.071 R0=1.505 X0=0.083 C1=0 C0=0 Units=km
+
+! Define loads
+New Load.Load1 bus1=2.1 phases=1 kW=12.5 kvar=5       !unbalanced
+New Load.Load2 bus1=2.2 phases=1 kW=6.5 kvar=2.5       !unbalanced
+New Load.Load3 bus1=2.3 phases=1 kW=10.5 kvar=4.0       !unbalanced
+New Load.Load4 bus1=3.1.2.3 phases=3 kW=27 kvar=15  !balanced
+New Load.Load5 bus1=4.1 phases=1 kW=9.5 kvar=3.5         !unbalanced
+New Load.Load6 bus1=4.2 phases=1 kW=4.5 kvar=1.5         !unbalanced
+New Load.Load7 bus1=4.3 phases=1 kW=11.0 kvar=4.0         !unbalanced
+
+
+! Define PV panels
+New Generator.G1 Bus1=3.1.2.3 phases=3 Model=3 Maxkvar=15 Minkvar=-15 kW=21 kVA=21
+! New PVSystem.PV1 Bus1=3.1.2.3 phases=3 kV=0.4 kVA=15.0 kW=12.0
+New PVSystem.PV2 bus1=4.1 phases=1 kV=0.4 kVA=2.5 pf=1  !single phase
+New PVSystem.PV3 bus1=4.2 phases=1 kV=0.4 kVA=2.5 pf=1  !single phase
+New PVSystem.PV4 bus1=4.3 phases=1 kV=0.4 kVA=2.5 pf=1  !single phase
+
+! Define lines
+New Line.Line1 bus1=1.1.2.3 bus2=2.1.2.3 phases=3 Linecode=4c_70 Length=0.2 Units=km 
+New Line.Line2 bus1=1.1.2.3 bus2=3.1.2.3 phases=3 Linecode=4c_70 Length=0.2 Units=km 
+New Line.Line3 bus1=3.1.2.3 bus2=4.1.2.3 phases=3 Linecode=4c_70 Length=0.2 Units=km 
+

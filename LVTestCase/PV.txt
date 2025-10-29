@@ -1,0 +1,23 @@
+New Generator.G1 Bus1=98.1.2.3 phases=3 Model=3 Maxkvar=30.0 Minkvar=-30.0 kW=54 kVA=54
+New Generator.G2 Bus1=117.1.2.3 phases=3 Model=3 Maxkvar=42.0 Minkvar=-42.0 kW=54 kVA=60
+New Generator.G3 Bus1=118.1.2.3 phases=3 Model=3 Maxkvar=42.0 Minkvar=-42.0 kW=54 kVA=60
+
+New PVSystem.PV1 Phases=1 Bus1=54.3 kV=0.4 kVA=7.5 pf=1 !4
+New PVSystem.PV2 Phases=1 Bus1=115.1 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV3 Phases=1 Bus1=114.2 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV4 Phases=1 Bus1=50.1 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV5 Phases=1 Bus1=76.1 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV6 Phases=1 Bus1=75.3 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV7 Phases=1 Bus1=7.2 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV8 Phases=1 Bus1=30.2 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV9 Phases=1 Bus1=40.3 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV10 Phases=1 Bus1=33.3 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV11 Phases=1 Bus1=34.2 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV12 Phases=1 Bus1=66.1 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV13 Phases=1 Bus1=97.2 kV=0.4 kVA=7.5 pf=1
+New PVSystem.PV14 Phases=1 Bus1=104.3 kV=0.4 kVA=7.5 pf=1
+
+
+
+
+
