@@ -13,11 +13,12 @@
 # 2 → OPF with voltage unbalance as constraint
 # 3 → OPF with voltage unbalance penalization
 
-selected_mode = 1  # ← change this to 2 or 3 as needed
+selected_mode = 3  # ← change this to 2 or 3 as needed
 
 if selected_mode == 1
     global VUF_STATUS = false
     global DEFAULT_OPF_personal = true
+    global VUF_set_selector = 1
 elseif selected_mode == 2
     global VUF_STATUS = true
     global DEFAULT_OPF_personal = true

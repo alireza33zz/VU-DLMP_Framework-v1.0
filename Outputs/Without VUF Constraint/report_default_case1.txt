@@ -1,0 +1,4 @@
+
+Total Pg: 293.648 kW
+Total Pl: 287.5 kW
+Total Losses (Pg - Pl): 6.148 kW
