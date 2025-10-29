@@ -13,7 +13,7 @@
 # 2 → OPF with voltage unbalance as constraint
 # 3 → OPF with voltage unbalance penalization
 
-selected_mode = 2  # ← change this to 2 or 3 as needed
+selected_mode = 1  # ← change this to 2 or 3 as needed
 
 if selected_mode == 1
     global VUF_STATUS = false
@@ -34,8 +34,8 @@ end
 # Other global flags
 # ─────────────────────────────────────────────────────────────────────────────
 global PLOT_DISPLAY = true            # Show plots during execution
-global SAVING_FIGURES_STATUS = false  # Save figures to disk
-global PRINT_PERMISSION_personal = false # Verbose solver output
+global SAVING_FIGURES_STATUS = true  # Save figures to disk
+global PRINT_PERMISSION_personal = true # Verbose solver output
 
 # Load core algorithm files
 include("Default Gen cost.jl")

@@ -13,10 +13,10 @@ File extensions are taken from global variables defined in the main scope
 function print_shadow_prices(pm)
     # Create output directory if it doesn't exist
     if VUF_STATUS
-    output_dir = "C:\\Users\\Alireza\\.julia\\Distribution-Locational-Mariginal-Price-55LV-simplified\\Outputs\\With VUF Constraint"
+    output_dir = "Outputs\\With VUF Constraint"
     mkpath(output_dir)
     elseif !VUF_STATUS
-    output_dir = "C:\\Users\\Alireza\\.julia\\Distribution-Locational-Mariginal-Price-55LV-simplified\\Outputs\\Without VUF Constraint"
+    output_dir = "Outputs\\Without VUF Constraint"
     mkpath(output_dir)
     end
 
