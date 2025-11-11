@@ -1,6 +1,6 @@
-# ⚡ OPF Simulation – Low Voltage Distribution Systems
+# ⚡ 3-phase AC-OPF – Low Voltage Distribution Systems
 
-This repository contains a Julia-based simulation framework for solving **Optimal Power Flow (OPF)** problems in low-voltage distribution networks. It supports three modes of operation:
+This repository contains a Julia-based framework for solving **Optimal Power Flow (OPF)** problems in low-voltage distribution networks using the **PowerModelsDistribution** package. It supports three modes of operation:
 
 1. **Default OPF** – no voltage unbalance constraints or penalties  
 2. **Voltage Unbalance as Constraint** – adds VUF constraints to the OPF  
