@@ -74,8 +74,12 @@ global PRINT_PERMISSION_personal = true # Verbose solver output
 
 If you use this repository in your research or publication, please cite:
 
-> **Zabihi, A.**, *Voltage Unbalance Optimization in Low-Voltage Distribution Networks*, [Journal/Conference Name], Year.  
-> DOI: `10.xxxx/xxxxx` *(replace with actual DOI)*
+@misc{zabihi2025VU_DLMP,
+      title={On the Impact of Voltage Unbalance on Distribution Locational Marginal Prices}, 
+      author={Alireza Zabihi and Luis Badesa and Araceli Hernandez},
+      year={2025},
+}
+
 
 
 ---
