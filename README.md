@@ -81,7 +81,7 @@ If you use this repository in your research or publication, please cite:
       eprint={2511.13971},
       archivePrefix={arXiv},
       primaryClass={eess.SY},
-      url={https://arxiv.org/abs/2511.13971}, 
+      url={https://arxiv.org/abs/2511.13971} 
 }
 
 
