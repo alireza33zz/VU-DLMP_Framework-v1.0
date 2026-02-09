@@ -106,5 +106,9 @@ Feel free to reach out or contribute via GitHub issues or pull requests.
 ## Funding details
 
 This work was supported by MICIU/AEI/10.13039/501100011033 and ERDF/EU under grant PID2022-141609OB-I00, and by the Madrid Government (Comunidad de Madrid-Spain) under the Multiannual Agreement 2023-2026 with Universidad Politécnica de Madrid, "Line A - Emerging PIs". The work of Alireza Zabihi was supported by the 2023 FPI- UPM call for Predoctoral Contracts within the framework of the 2021-2023 State Plan for Scientific, Technical, and Innovative Research.
-| ![](figure1.jpg) | ![](figure2.png) |
+
+<p align="center">
+  <img src="figure1.jpg" width="45%" />
+  <img src="figure2.png" width="45%" />
+</p>
 
