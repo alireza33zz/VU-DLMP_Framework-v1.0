@@ -109,5 +109,5 @@ This work was supported by MICIU/AEI/10.13039/501100011033 and ERDF/EU under gra
 
 | Figure 1 | Figure 2 |
 |----------|----------|
-| ![](figures/figure1.jpg) | ![](figures/figure2.png) |
+| ![](figure1.jpg) | ![](figure2.png) |
 
