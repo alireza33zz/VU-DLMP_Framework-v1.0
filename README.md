@@ -88,13 +88,11 @@ If you use this repository in your research or publication, please cite:
 
 ---
 
-## 🙏 Acknowledgements and Funding details
-
+## 🙏 Acknowledgements
 Special thanks to:
 
 - **Andrey Churkin** for publishing [3FlexAnalyser.jl](https://github.com/AndreyChurkin/3FlexAnalyser.jl.git) 
 - and **Oscar Dowson** for his helpful and fast responses on Julia Discourse.
-- This work was supported by MICIU/AEI/10.13039/501100011033 and ERDF/EU under grant PID2022-141609OB-I00, and by the Madrid Government (Comunidad de Madrid-Spain) under the Multiannual Agreement 2023-2026 with Universidad Politécnica de Madrid, "Line A - Emerging PIs". The work of Alireza Zabihi was supported by the 2023 FPI- UPM call for Predoctoral Contracts within the framework of the 2021-2023 State Plan for Scientific, Technical, and Innovative Research.
 
 ---
 
@@ -102,3 +100,14 @@ Special thanks to:
 
 Developed by **Alireza Zabihi**  
 Feel free to reach out or contribute via GitHub issues or pull requests.
+
+---
+
+## Funding details
+
+This work was supported by MICIU/AEI/10.13039/501100011033 and ERDF/EU under grant PID2022-141609OB-I00, and by the Madrid Government (Comunidad de Madrid-Spain) under the Multiannual Agreement 2023-2026 with Universidad Politécnica de Madrid, "Line A - Emerging PIs". The work of Alireza Zabihi was supported by the 2023 FPI- UPM call for Predoctoral Contracts within the framework of the 2021-2023 State Plan for Scientific, Technical, and Innovative Research.
+
+| Figure 1 | Figure 2 |
+|----------|----------|
+| ![](figures/figure1.jpg) | ![](figures/figure2.png) |
+
