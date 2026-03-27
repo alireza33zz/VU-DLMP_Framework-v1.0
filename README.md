@@ -75,14 +75,17 @@ global PRINT_PERMISSION_personal = true # Verbose solver output
 If you use this repository in your research or publication, please cite:
 
 ```bibtex
-@misc{zabihi2025impactvoltageunbalancedistribution,
-  title        = {On the Impact of Voltage Unbalance on Distribution Locational Marginal Prices},
-  author       = {Zabihi, Alireza and Badesa, Luis and Hernandez, Araceli},
-  year         = {2025},
-  eprint       = {2511.13971},
-  archivePrefix= {arXiv},
-  primaryClass = {eess.SY},
-  url          = {https://arxiv.org/abs/2511.13971}
+@article{ZABIHI2026111808,
+title = {On the impact of voltage unbalance on distribution locational marginal prices},
+journal = {International Journal of Electrical Power & Energy Systems},
+volume = {177},
+pages = {111808},
+year = {2026},
+issn = {0142-0615},
+doi = {https://doi.org/10.1016/j.ijepes.2026.111808},
+url = {https://www.sciencedirect.com/science/article/pii/S0142061526002504},
+author = {Alireza Zabihi and Luis Badesa and Araceli Hernández},
+keywords = {Distribution locational marginal prices, Power quality, Three-phase optimal power flow, Voltage unbalance}
 }
 ```
 
